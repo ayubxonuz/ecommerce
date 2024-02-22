@@ -15,14 +15,57 @@ export const fetchData = createAsyncThunk(
   }
 )
 
-const ecommerseSlice = createSlice({
-  name: "ecommerse",
-  initialState: {
+const initialState = () =>
+  JSON.parse(localStorage.getItem("ecommerse")) || {
     allData: null,
     loading: false,
     error: null,
+    allSelectData: [],
+    allCount: 0,
+    allPrice: 0,
+  }
+
+const ecommerseSlice = createSlice({
+  name: "ecommerse",
+  initialState,
+  reducers: {
+    deleteAll: (state, {payload}) => {
+      state.allSelectData = []
+      state.allCount = 0
+      localStorage.setItem("ecommerse", JSON.stringify(state))
+    },
+    addToCard: (state, {payload}) => {
+      const item = state.allSelectData.find(
+        (select) => select.id === payload.id
+      )
+      if (item) {
+        item.amount += 1
+      } else {
+        state.allSelectData = [...state.allSelectData, payload]
+      }
+      ecommerseSlice.caseReducers.globalCounter(state)
+    },
+    incrementData: (state, {payload}) => {},
+    decrementData: (state, {payload}) => {
+      const item = state.allSelectData.find(
+        (select) => select.id === payload.id
+      )
+
+      item && item.amount--
+    },
+    globalCounter: (state) => {
+      let price = 0
+      let total = 0
+      state.allSelectData.forEach((select) => {
+        price = select.amount * select.price
+        total = select.amount
+      })
+      state.allPrice = price
+      state.allCount = total
+      localStorage.setItem("ecommerse", JSON.stringify(state))
+    },
   },
-  reducers: {},
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
@@ -41,5 +84,8 @@ const ecommerseSlice = createSlice({
       })
   },
 })
+
+export const {addToCard, deleteAll, globalCounter, decrementData} =
+  ecommerseSlice.actions
 
 export default ecommerseSlice.reducer

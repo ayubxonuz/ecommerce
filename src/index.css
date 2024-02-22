@@ -49,7 +49,7 @@
   }
 
   .max-container {
-    @apply max-w-[1100px] w-full mx-auto p-5;
+    @apply max-w-[1100px] w-full mx-auto px-[50px] py-5 max-[725px]:px-[24px];
   }
   html,
   body {

@@ -6,8 +6,18 @@ import CheckOut from "./pages/CheckOut"
 import HeadPhones from "./pages/HeadPhones"
 import Speakers from "./pages/Speakers"
 import Earphones from "./pages/Earphones"
+import {useEffect} from "react"
+import {useDispatch} from "react-redux"
+import {fetchData} from "./redux/features/ecommerseSlice"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchData())
+  }, [dispatch])
+
   const routest = createBrowserRouter([
     {
       path: "/",
@@ -38,6 +48,14 @@ function App() {
           element: <CheckOut />,
         },
       ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
     },
   ])
   return <RouterProvider router={routest} />

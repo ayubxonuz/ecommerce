@@ -1,8 +1,9 @@
 function Bringing() {
   return (
-    <div className="grid grid-cols-2 items-center mt-[200px] mb-40">
-      <div className="mr-32">
-        <h3 className="font-bold text-[#000000] text-[40px] tracking-[1.44px] mb-8">
+    <div className="grid grid-cols-2 items-center mt-[200px] max-[1027px]:grid-cols-1">
+      <div className="bg-[url('/personImgBig.png')] rounded-lg bg-cover w-full h-[300px] hidden max-[1027px]:block"></div>
+      <div className="px-[58px] pt-[63px] max-[1027px]:px-[0px] max-[820px]:pt-[40px] max-[1027px]:text-center w-[690px] max-w-full mx-auto">
+        <h3 className="font-bold text-[#000000] text-[40px] max-[710px]:text-[28px] tracking-[1.44px] mb-8">
           BRINGING YOU THE <span className="text-[#D87D4A]">BEST</span> AUDIO
           GEAR
         </h3>
@@ -15,7 +16,7 @@ function Bringing() {
           best place to buy your portable audio equipment.
         </p>
       </div>
-      <div className="bg-[url('/personimg.svg')] bg-center ml-auto max-w-[515px] w-full h-[588px]"></div>
+      <div className="bg-[url('/personimg.svg')] max-w-full max-h-full rounded-lg bg-center ml-auto w-[540px] h-[588px] max-[1027px]:hidden"></div>
     </div>
   )
 }
