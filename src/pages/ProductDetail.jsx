@@ -55,11 +55,6 @@ function ProductDetail() {
               $ {singleData?.price}
             </h3>
             <div className="flex gap-x-4 mt-[47px]">
-              <div className="w-[120px] h-12 bg-[#F1F1F1] flex justify-between items-center px-6">
-                <button className="hover:text-[#FBAF85]">-</button>
-                <p>0</p>
-                <button className="hover:text-[#FBAF85]">+</button>
-              </div>
               <button
                 onClick={() => dispatch(addToCard({...singleData, amount: 1}))}
                 className={`w-40 h-12 bg-[#D87D4A] hover:bg-[#FBAF85] text-[#FFFFFF] text-[13px] transition leading-[17px] tracking-[1px] font-bold`}
