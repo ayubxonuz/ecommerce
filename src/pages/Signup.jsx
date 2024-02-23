@@ -2,16 +2,22 @@ import React, {useEffect} from "react"
 import {signInWithPopup, GoogleAuthProvider} from "firebase/auth"
 import {Link, useNavigate} from "react-router-dom"
 import {auth} from "../firebase/configFirebase"
+import {useDispatch, useSelector} from "react-redux"
+import {setUser} from "../redux/features/ecommerseSlice"
 
 const GoogleProvider = new GoogleAuthProvider()
 
 function Signup() {
+  const {userData} = useSelector((store) => store.ecommerse)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (userData) {
         navigate("/")
+      } else {
+        navigate("/signup")
       }
     })
 
@@ -21,7 +27,7 @@ function Signup() {
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, GoogleProvider)
-      console.log("User signed in:", result.user)
+      dispatch(setUser(result.user))
     } catch (error) {
       console.error("Error signing in with Google:", error)
     }

@@ -1,8 +1,4 @@
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useNavigate,
-} from "react-router-dom"
+import {Navigate, RouterProvider, createBrowserRouter} from "react-router-dom"
 import RootLayout from "../layout/RootLayout"
 import Home from "./components/Home"
 import ProductDetail from "./pages/ProductDetail"
@@ -11,12 +7,13 @@ import HeadPhones from "./pages/HeadPhones"
 import Speakers from "./pages/Speakers"
 import Earphones from "./pages/Earphones"
 import {useEffect} from "react"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {fetchData} from "./redux/features/ecommerseSlice"
-import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 
 function App() {
+  const {userData} = useSelector((state) => state.ecommerse)
+  console.log(userData)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchData())
@@ -25,41 +22,42 @@ function App() {
   const routest = createBrowserRouter([
     {
       path: "/",
-      element: <RootLayout />,
+      element: userData == null ? <Navigate to={"/signup"} /> : <RootLayout />,
       children: [
         {
           index: true,
-          element: <Home />,
+          element: userData == null ? <Navigate to={"/signup"} /> : <Home />,
         },
         {
           path: "/headphones",
-          element: <HeadPhones />,
+          element:
+            userData == null ? <Navigate to={"/signup"} /> : <HeadPhones />,
         },
         {
           path: "/speakers",
-          element: <Speakers />,
+          element:
+            userData == null ? <Navigate to={"/signup"} /> : <Speakers />,
         },
         {
           path: "/earphones",
-          element: <Earphones />,
+          element:
+            userData == null ? <Navigate to={"/signup"} /> : <Earphones />,
         },
         {
           path: "/product/:slug",
-          element: <ProductDetail />,
+          element:
+            userData == null ? <Navigate to={"/signup"} /> : <ProductDetail />,
         },
         {
           path: "/checkout",
-          element: <CheckOut />,
+          element:
+            userData == null ? <Navigate to={"/signup"} /> : <CheckOut />,
         },
       ],
     },
     {
-      path: "/login",
-      element: <Login />,
-    },
-    {
       path: "/signup",
-      element: <Signup />,
+      element: userData ? <Navigate to={"/"} /> : <Signup />,
     },
   ])
   return <RouterProvider router={routest} />

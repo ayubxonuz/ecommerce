@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-
+import {getAuth, signOut} from "firebase/auth"
+import {Navigate} from "react-router-dom"
 export const fetchData = createAsyncThunk(
   "ecommerse/fetchData",
   async (_, thunkAPI) => {
@@ -18,6 +19,7 @@ export const fetchData = createAsyncThunk(
 const initialState = () =>
   JSON.parse(localStorage.getItem("ecommerse")) || {
     allData: null,
+    userData: null,
     loading: false,
     error: null,
     allSelectData: [],
@@ -29,6 +31,22 @@ const ecommerseSlice = createSlice({
   name: "ecommerse",
   initialState,
   reducers: {
+    // logout: (state, {payload}) => {
+    //   const auth = getAuth()
+    //   signOut(auth)
+    //     .then(() => {
+    //       console.log("signout")
+    //       localStorage.removeItem("ecommerse")
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.message)
+    //     })
+    // },
+
+    setUser: (state, {payload}) => {
+      state.userData = payload
+      localStorage.setItem("ecommerse", JSON.stringify(state))
+    },
     deleteAll: (state, {payload}) => {
       state.allSelectData = []
       state.allCount = 0
@@ -86,7 +104,12 @@ const ecommerseSlice = createSlice({
   },
 })
 
-export const {addToCard, deleteAll, globalCounter, decrementData} =
-  ecommerseSlice.actions
+export const {
+  addToCard,
+  deleteAll,
+  globalCounter,
+  setUser,
+  decrementData,
+} = ecommerseSlice.actions
 
 export default ecommerseSlice.reducer

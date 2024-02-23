@@ -116,6 +116,12 @@ function Navbar() {
             className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-[400px] h-auto pb-5"
           >
             <div className="mx-8">
+              {/* <button
+                onClick={() => dispatch(logout())}
+                className="btn btn-primary"
+              >
+                Out
+              </button> */}
               <div className="flex justify-between my-8 items-center">
                 <p className="text-[#000000] font-bold text-[18px] tracking-[1.29px]">
                   CART ({allCount})
