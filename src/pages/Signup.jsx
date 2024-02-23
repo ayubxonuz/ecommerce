@@ -1,15 +1,27 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {signInWithPopup, GoogleAuthProvider} from "firebase/auth"
 import {Link, useNavigate} from "react-router-dom"
 import {auth} from "../firebase/configFirebase"
+
 const GoogleProvider = new GoogleAuthProvider()
 
 function Signup() {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigate("/")
+      }
+    })
+
+    return unsubscribe
+  }, [navigate])
+
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, GoogleProvider)
-      navigate("/")
+      console.log("User signed in:", result.user)
     } catch (error) {
       console.error("Error signing in with Google:", error)
     }

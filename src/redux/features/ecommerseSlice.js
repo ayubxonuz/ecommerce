@@ -52,6 +52,7 @@ const ecommerseSlice = createSlice({
       )
 
       item && item.amount--
+      ecommerseSlice.caseReducers.globalCounter(state)
     },
     globalCounter: (state) => {
       let price = 0

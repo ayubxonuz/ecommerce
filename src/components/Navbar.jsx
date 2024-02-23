@@ -170,9 +170,11 @@ function Navbar() {
                       $ {allPrice.toLocaleString("en-US")}
                     </p>
                   </div>
-                  <button className="text-[#FFFFFF] hover:bg-[#FBAF85] transition font-bold text-[13px] bg-[#D87D4A] max-w-[313px] w-full h-12 mt-6">
-                    CHECKOUT
-                  </button>
+                  <Link to={"/checkout"}>
+                    <button className="text-[#FFFFFF] hover:bg-[#FBAF85] transition font-bold text-[13px] bg-[#D87D4A] max-w-[313px] w-full h-12 mt-6">
+                      CHECKOUT
+                    </button>
+                  </Link>
                 </>
               )}
             </div>
