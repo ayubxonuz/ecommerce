@@ -16,7 +16,6 @@ function Speakers() {
 
   const speakers =
     allData && allData.filter((data) => data.category == "speakers")
-  console.log(speakers)
 
   return (
     <>

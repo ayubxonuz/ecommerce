@@ -15,7 +15,9 @@ function ProductDetail() {
   const [singleData, setSingleData] = useState({})
   const slug = useParams()
   useEffect(() => {
-    fetch(`http://localhost:3000/data?slug=${slug.slug}`).then((res) =>
+    fetch(
+      `https://render-json-server-8q4k.onrender.com/data?slug=${slug.slug}`
+    ).then((res) =>
       res.json().then((datas) =>
         datas.forEach((data) => {
           setSingleData(data)

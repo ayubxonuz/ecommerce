@@ -5,7 +5,9 @@ export const fetchData = createAsyncThunk(
   "ecommerse/fetchData",
   async (_, thunkAPI) => {
     try {
-      const response = await fetch("http://localhost:3000/data")
+      const response = await fetch(
+        "https://render-json-server-8q4k.onrender.com/data"
+      )
       if (!response.ok) {
         throw new Error("Failed to fetch data")
       }
@@ -104,12 +106,7 @@ const ecommerseSlice = createSlice({
   },
 })
 
-export const {
-  addToCard,
-  deleteAll,
-  globalCounter,
-  setUser,
-  decrementData,
-} = ecommerseSlice.actions
+export const {addToCard, deleteAll, globalCounter, setUser, decrementData} =
+  ecommerseSlice.actions
 
 export default ecommerseSlice.reducer
