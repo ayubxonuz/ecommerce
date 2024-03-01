@@ -33,7 +33,7 @@ function Home() {
       {allData && (
         <>
           <div>
-            <div className="bg-[url('./assets/home/mobile/image-header.jpg')] bg-cover bg-center bg-no-repeat sm:bg-[url('./assets/home/tablet/image-header.jpg')] 2xl:pt-44 max-[1188px]:pt-0 lg:bg-[url('./assets/home/desktop/image-hero.jpg')]">
+            <div className="bg-[url('/assets/home/mobile/image-header.jpg')] bg-cover bg-center bg-no-repeat sm:bg-[url('/assets/home/tablet/image-header.jpg')] 2xl:pt-44 max-[1188px]:pt-0 lg:bg-[url('/assets/home/desktop/image-hero.jpg')]">
               <div className="max-container py-28 sm:pb-40 sm:pt-32 lg:pb-60 lg:pt-40">
                 <div className="mx-auto flex w-full max-w-96 flex-col items-center text-center lg:mx-0 lg:items-start lg:text-start">
                   <span className="mb-4 text-white opacity-50 tracking-[10px] text-[14px]">

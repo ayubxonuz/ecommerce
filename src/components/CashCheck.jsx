@@ -16,7 +16,7 @@ function CashCheck({text, checked, onChange}) {
             checked={checked}
             onChange={onChange}
           />
-          <span className="label-text mt-[2px] ml-2">{text}</span>
+          <span className="label-text ml-2">{text}</span>
         </label>
       </div>
     </div>
