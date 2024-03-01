@@ -8,12 +8,19 @@ import ThreeGalery from "../components/ThreeGalery"
 import {useDispatch, useSelector} from "react-redux"
 import {addToCard} from "../redux/features/ecommerseSlice"
 import Loader from "../components/Loader"
+import {animateScroll} from "react-scroll"
 
 function ProductDetail() {
   const dispatch = useDispatch()
-  const {allSelectData, loading} = useSelector((store) => store.ecommerse)
-  const [singleData, setSingleData] = useState({})
+  const {loading} = useSelector((store) => store.ecommerse)
+  const [singleData, setSingleData] = useState(null)
   const slug = useParams()
+  useEffect(() => {
+    animateScroll.scrollToTop({
+      duration: 500,
+      smooth: true,
+    })
+  }, [slug])
   useEffect(() => {
     fetch(
       `https://render-json-server-8q4k.onrender.com/data?slug=${slug.slug}`
@@ -24,7 +31,7 @@ function ProductDetail() {
         })
       )
     )
-  }, [])
+  }, [slug])
 
   return (
     <>
@@ -33,82 +40,86 @@ function ProductDetail() {
           <Loader />
         </div>
       )}
-      <div className="max-container">
-        <NavLink to={"/"}>Go Back</NavLink>
-        <div className="grid grid-cols-2 items-center mt-14 mb-[160px] max-[1138px]:grid-cols-1">
-          <div className="max-w-[540px] max-[1138px]:max-w-full bg-[#F1F1F1] w-full flex h-[560px]">
-            <img
-              className="m-auto w-[381px]"
-              src={singleData.categoryImage?.desktop}
-              alt=""
-            />
-          </div>
-          <div className="ml-[125px] max-[1138px]:ml-0 max-[1138px]:py-[24px] max-[1138px]:pr-[24px]">
-            <p className="text-[14px] tracking-[10px] text-[#D87D4A]">
-              NEW PRODUCT
-            </p>
-            <h2 className="text-[#000000] font-bold text-[44px] tracking-[1.43px]">
-              {singleData?.name}
-            </h2>
-            <p className="text-[#000000] mt-8 mb-10 text-[15px] opacity-[50%]">
-              {singleData?.description}
-            </p>
-            <h3 className="text-[#000000] font-bold text-[18px] tracking-[1.29px]">
-              $ {singleData?.price}
-            </h3>
-            <div className="flex gap-x-4 mt-[47px]">
-              <button
-                onClick={() => dispatch(addToCard({...singleData, amount: 1}))}
-                className={`w-40 h-12 bg-[#D87D4A] hover:bg-[#FBAF85] text-[#FFFFFF] text-[13px] transition leading-[17px] tracking-[1px] font-bold`}
-              >
-                ADD TO CART
-              </button>
+      {singleData && (
+        <div className="max-container">
+          <NavLink to={"/"}>Go Back</NavLink>
+          <div className="grid grid-cols-2 items-center mt-14 mb-[160px] max-[1138px]:grid-cols-1">
+            <div className="max-w-[540px] max-[1138px]:max-w-full bg-[#F1F1F1] w-full flex h-[560px]">
+              <img
+                className="m-auto w-[381px]"
+                src={singleData.categoryImage?.desktop}
+                alt=""
+              />
+            </div>
+            <div className="ml-[125px] max-[1138px]:ml-0 max-[1138px]:py-[24px] max-[1138px]:pr-[24px]">
+              <p className="text-[14px] tracking-[10px] text-[#D87D4A]">
+                NEW PRODUCT
+              </p>
+              <h2 className="text-[#000000] font-bold text-[44px] tracking-[1.43px]">
+                {singleData?.name}
+              </h2>
+              <p className="text-[#000000] mt-8 mb-10 text-[15px] opacity-[50%]">
+                {singleData?.description}
+              </p>
+              <h3 className="text-[#000000] font-bold text-[18px] tracking-[1.29px]">
+                $ {singleData?.price}
+              </h3>
+              <div className="flex gap-x-4 mt-[47px]">
+                <button
+                  onClick={() =>
+                    dispatch(addToCard({...singleData, amount: 1}))
+                  }
+                  className={`w-40 h-12 bg-[#D87D4A] hover:bg-[#FBAF85] text-[#FFFFFF] text-[13px] transition leading-[17px] tracking-[1px] font-bold`}
+                >
+                  ADD TO CART
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex justify-between max-[1138px]:block">
-          <div>
-            <h2 className="font-bold text-[32px] mb-8 tracking-[1.14px] text-[#000000]">
-              FEATURES
-            </h2>
-            <p className="text-[15px] max-[1138px]:max-w-full text-[#000000] opacity-[50%] max-w-[635px] w-full">
-              {singleData?.features}
-            </p>
-          </div>
-          <div className="max-[1138px]:flex max-[1138px]:mt-[120px] max-[1138px]:justify-between max-[700px]:block max-[700px]:mt-[88px]">
-            <h2 className="font-bold mb-8 text-[32px] tracking-[1.14px] text-[#000000]">
-              IN THE BOX
-            </h2>
-            <div className="mr-[124px]">
-              {singleData.includes?.map((inc) => {
-                return (
-                  <p
-                    key={nanoid()}
-                    className="text-[#000000] mb-2 opacity-[50%] text-[15px] flex gap-x-6"
-                  >
-                    <span className="text-[#D87D4A] font-bold text-[15px]">
-                      {inc.quantity}x
-                    </span>
-                    {inc.item}
-                  </p>
-                )
-              })}
+          <div className="flex justify-between max-[1138px]:block">
+            <div>
+              <h2 className="font-bold text-[32px] mb-8 tracking-[1.14px] text-[#000000]">
+                FEATURES
+              </h2>
+              <p className="text-[15px] max-[1138px]:max-w-full text-[#000000] opacity-[50%] max-w-[635px] w-full">
+                {singleData?.features}
+              </p>
+            </div>
+            <div className="max-[1138px]:flex max-[1138px]:mt-[120px] max-[1138px]:justify-between max-[700px]:block max-[700px]:mt-[88px]">
+              <h2 className="font-bold mb-8 text-[32px] tracking-[1.14px] text-[#000000]">
+                IN THE BOX
+              </h2>
+              <div className="mr-[124px]">
+                {singleData.includes?.map((inc) => {
+                  return (
+                    <p
+                      key={nanoid()}
+                      className="text-[#000000] mb-2 opacity-[50%] text-[15px] flex gap-x-6"
+                    >
+                      <span className="text-[#D87D4A] font-bold text-[15px]">
+                        {inc.quantity}x
+                      </span>
+                      {inc.item}
+                    </p>
+                  )
+                })}
+              </div>
             </div>
           </div>
+          <ThreeGalery
+            img1={singleData.gallery?.first.desktop}
+            img2={singleData.gallery?.second.desktop}
+            img3={singleData.gallery?.third?.desktop}
+          />
+          <ThreeBox />
+          <div className="mt-40">
+            <ThreeShop />
+          </div>
+          <div className="mb-[120px]">
+            <Bringing />
+          </div>
         </div>
-        <ThreeGalery
-          img1={singleData.gallery?.first.desktop}
-          img2={singleData.gallery?.second.desktop}
-          img3={singleData.gallery?.third?.desktop}
-        />
-        <ThreeBox />
-        <div className="mt-40">
-          <ThreeShop />
-        </div>
-        <div className="mb-[120px]">
-          <Bringing />
-        </div>
-      </div>
+      )}
     </>
   )
 }

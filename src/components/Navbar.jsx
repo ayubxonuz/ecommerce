@@ -25,7 +25,7 @@ function Navbar() {
         onLoaderFinished={() => setProgress(0)}
       />
       <header className="max-container z-20 relative flex justify-between py-9 items-center">
-        <div className="flex gap-x-12 items-center ">
+        <div className="flex items-center ">
           <div className="dropdown dropdown-right hidden max-[780px]:block">
             <div
               tabIndex={0}

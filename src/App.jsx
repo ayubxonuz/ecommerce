@@ -13,11 +13,10 @@ import Signup from "./pages/Signup"
 
 function App() {
   const {userData} = useSelector((state) => state.ecommerse)
-  console.log(userData)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchData())
-  }, [dispatch])
+  }, [])
 
   const routest = createBrowserRouter([
     {

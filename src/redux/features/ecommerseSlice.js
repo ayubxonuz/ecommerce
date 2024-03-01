@@ -33,18 +33,6 @@ const ecommerseSlice = createSlice({
   name: "ecommerse",
   initialState,
   reducers: {
-    // logout: (state, {payload}) => {
-    //   const auth = getAuth()
-    //   signOut(auth)
-    //     .then(() => {
-    //       console.log("signout")
-    //       localStorage.removeItem("ecommerse")
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.message)
-    //     })
-    // },
-
     setUser: (state, {payload}) => {
       state.userData = payload
       localStorage.setItem("ecommerse", JSON.stringify(state))
@@ -78,8 +66,8 @@ const ecommerseSlice = createSlice({
       let price = 0
       let total = 0
       state.allSelectData.forEach((select) => {
-        price = select.amount * select.price
-        total = select.amount
+        price += select.amount * select.price
+        total += select.amount
       })
       state.allPrice = price
       state.allCount = total

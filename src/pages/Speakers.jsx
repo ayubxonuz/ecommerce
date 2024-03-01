@@ -6,12 +6,19 @@ import CategoryRight from "../components/CategoryRight"
 import ThreeShop from "../components/ThreeShop"
 import Bringing from "../components/Bringing"
 import Loader from "../components/Loader"
+import {animateScroll} from "react-scroll"
 
 function Speakers() {
   const dispatch = useDispatch()
   const {allData, loading, error} = useSelector((store) => store.ecommerse)
   useEffect(() => {
     dispatch(fetchData())
+  }, [])
+  useEffect(() => {
+    animateScroll.scrollToTop({
+      duration: 500,
+      smooth: true,
+    })
   }, [])
 
   const speakers =
@@ -24,37 +31,39 @@ function Speakers() {
           <Loader />
         </div>
       )}
-      <div>
-        <div className="bg-[#000000]">
+      {allData && (
+        <div>
+          <div className="bg-[#000000]">
+            <div className="max-container">
+              <hr className="bg-[#FFFFFF] z-0 relative opacity-[20%] h-[1px]" />
+              <h1 className="font-bold text-center mt-[98px] mb-[97px] text-[#FFFFFF] text-[44px] tracking-[1.43px]">
+                SPEAKERS
+              </h1>
+            </div>
+          </div>
           <div className="max-container">
-            <hr className="bg-[#FFFFFF] z-0 relative opacity-[20%] h-[1px]" />
-            <h1 className="font-bold text-center mt-[98px] mb-[97px] text-[#FFFFFF] text-[44px] tracking-[1.43px]">
-              SPEAKERS
-            </h1>
-          </div>
-        </div>
-        <div className="max-container">
-          <CategoryLeft
-            slug={speakers && speakers[1].slug}
-            img={speakers && speakers[1].image.desktop}
-            title={speakers && speakers[1].name}
-            dscr={speakers && speakers[1].description}
-          />
-          <CategoryRight
-            slug={speakers && speakers[0].slug}
-            img={speakers && speakers[0].image.desktop}
-            title={speakers && speakers[0].name}
-            dscr={speakers && speakers[0].description}
-          />
+            <CategoryLeft
+              slug={speakers && speakers[1].slug}
+              img={speakers && speakers[1].image.desktop}
+              title={speakers && speakers[1].name}
+              dscr={speakers && speakers[1].description}
+            />
+            <CategoryRight
+              slug={speakers && speakers[0].slug}
+              img={speakers && speakers[0].image.desktop}
+              title={speakers && speakers[0].name}
+              dscr={speakers && speakers[0].description}
+            />
 
-          <div className="mb-[160px]">
-            <ThreeShop />
-          </div>
-          <div className="mb-[160px] max-[1027px]:mb-[100px]">
-            <Bringing />
+            <div className="mb-[160px]">
+              <ThreeShop />
+            </div>
+            <div className="mb-[160px] max-[1027px]:mb-[100px]">
+              <Bringing />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
