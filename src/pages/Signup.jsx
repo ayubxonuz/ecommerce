@@ -74,7 +74,7 @@ function Signup() {
             <input
               required
               type="password"
-              placeholder="Email"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="input input-bordered mt-2 input-md w-full max-w-full"
