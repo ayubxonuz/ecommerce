@@ -36,7 +36,10 @@ function CheckOut() {
       {allData && (
         <div className="w-full h-full bg-base-200">
           <div className="max-container">
-            <Link to={"/"} className="btn mt-[79px] text-[16px] mb-[38px]">
+            <Link
+              to={"/"}
+              className="btn bg-base-100 mt-[79px] text-[16px] mb-[38px]"
+            >
               Go Back
             </Link>
             <div className="flex gap-x-7 max-[930px]:block">
