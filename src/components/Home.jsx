@@ -75,7 +75,7 @@ function Home() {
               </div>
             </div>
             <div className="bg-[url('/zxyspeaker.svg')] bg-center h-[320px] mt-[48px] bg-no-repeat p-24 max-[710px]:pl-[24px]">
-              <p className="text-[#000000] font-bold mb-8 text-[28px]">
+              <p className="font-bold mb-8 text-black text-[28px]">
                 ZX7 SPEAKER
               </p>
               <ButtonWhite slug={"zx7-speaker"} text={"SEE PRODUCT"} />
@@ -84,7 +84,7 @@ function Home() {
               <div className=" w-full bg-center h-[320px] bg-[url('/yx1earphones.svg')]"></div>
               <div className="w-full bg-center h-[320px] bg-[#F1F1F1]">
                 <div className="mt-[101px] pl-[95px] max-[600px]:pl-[24px]">
-                  <p className="font-bold text-[28px] mb-8 tracking-[2px]">
+                  <p className="font-bold text-black text-[28px] mb-8 tracking-[2px]">
                     YX1 EARPHONES
                   </p>
                   <ButtonWhite slug={"yx1-earphones"} text={"SEE PRODUCT"} />

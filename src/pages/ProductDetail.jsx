@@ -40,7 +40,7 @@ function ProductDetail() {
           <Loader />
         </div>
       )}
-      {singleData && (
+      {singleData ? (
         <div className="max-container">
           <NavLink className={"btn"} to={"/"}>
             Go Back
@@ -57,13 +57,13 @@ function ProductDetail() {
               <p className="text-[14px] tracking-[10px] text-[#D87D4A]">
                 NEW PRODUCT
               </p>
-              <h2 className="text-[#000000] max-[500px]:text-[28px] mt-2 font-bold text-[44px] tracking-[1.43px]">
+              <h2 className="max-[500px]:text-[28px] mt-2 font-bold text-[44px] tracking-[1.43px]">
                 {singleData?.name}
               </h2>
-              <p className="text-[#000000] mt-8 mb-10 max-[500px]:mb-[20px] text-[15px] opacity-[50%]">
+              <p className="mt-8 mb-10 max-[500px]:mb-[20px] text-[15px] opacity-[50%]">
                 {singleData?.description}
               </p>
-              <h3 className="text-[#000000] font-bold text-[18px] tracking-[1.29px]">
+              <h3 className="font-bold text-[18px] tracking-[1.29px]">
                 $ {singleData?.price}
               </h3>
               <div className="flex gap-x-4 mt-[47px] max-[500px]:mt-[31px]">
@@ -80,15 +80,15 @@ function ProductDetail() {
           </div>
           <div className="flex justify-between max-[1138px]:block">
             <div>
-              <h2 className="font-bold text-[32px] mb-[24px] tracking-[1.14px] text-[#000000]">
+              <h2 className="font-bold text-[32px] mb-[24px] tracking-[1.14px]">
                 FEATURES
               </h2>
-              <p className="text-[15px] max-[1138px]:max-w-full text-[#000000] opacity-[50%] max-w-[635px] w-full">
+              <p className="text-[15px] max-[1138px]:max-w-full opacity-[50%] max-w-[635px] w-full">
                 {singleData?.features}
               </p>
             </div>
             <div className="max-[1138px]:flex max-[1138px]:mt-[120px] max-[1138px]:justify-between max-[700px]:block max-[700px]:mt-[88px]">
-              <h2 className="font-bold mb-8 text-[32px] tracking-[1.14px] text-[#000000]">
+              <h2 className="font-bold mb-8 text-[32px] tracking-[1.14px]">
                 IN THE BOX
               </h2>
               <div className="mr-[124px] max-[414px]:mr-0">
@@ -96,7 +96,7 @@ function ProductDetail() {
                   return (
                     <p
                       key={nanoid()}
-                      className="text-[#000000] mb-2 opacity-[50%] text-[15px] flex gap-x-6"
+                      className="mb-2 opacity-[50%] text-[15px] flex gap-x-6"
                     >
                       <span className="text-[#D87D4A] font-bold text-[15px]">
                         {inc.quantity}x
@@ -120,6 +120,10 @@ function ProductDetail() {
           <div className="mb-[120px]">
             <Bringing />
           </div>
+        </div>
+      ) : (
+        <div className="bg-white z-40 opacity-50 justify-center items-center flex fixed top-0 left-0 right-0 bottom-0">
+          <Loader />
         </div>
       )}
     </>

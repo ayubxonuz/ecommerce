@@ -3,7 +3,7 @@ import ButtonBrown from "./ButtonBrown"
 function ThreeBox() {
   return (
     <>
-      <h1 className="text-center font-bold text-[32px] tracking-[1.14px] text-[#000000] max-[500px]:text-[24px]">
+      <h1 className="text-center font-bold text-[32px] tracking-[1.14px] max-[500px]:text-[24px]">
         YOU MAY ALSO LIKE YOU
       </h1>
       <div className="grid grid-cols-3 mt-[100px] max-[500px]:mt-[40px] gap-x-[30px] max-[930px]:grid-cols-1 max-[930px]:justify-items-center">
@@ -18,7 +18,7 @@ function ThreeBox() {
             />
           </div>
           <div className="grid justify-center max-[930px]:justify-start max-[580px]:justify-center max-[580px]:text-center">
-            <p className="text-[#000000] mb-8 mt-10 font-bold text-[24px] tracking-[1.71px]">
+            <p className="mb-8 mt-10 font-bold text-[24px] tracking-[1.71px]">
               XX99 MARK II
             </p>
             <ButtonBrown
@@ -39,7 +39,7 @@ function ThreeBox() {
             />
           </div>
           <div className="grid justify-center max-[930px]:justify-start max-[580px]:justify-center max-[580px]:text-center">
-            <p className="text-[#000000] mb-8 mt-10 font-bold text-[24px] tracking-[1.71px]">
+            <p className="mb-8 mt-10 font-bold text-[24px] tracking-[1.71px]">
               ZX9 SPEAKER
             </p>
             <ButtonBrown
@@ -60,7 +60,7 @@ function ThreeBox() {
             />
           </div>
           <div className="grid justify-center max-[930px]:justify-start max-[580px]:justify-center max-[580px]:text-center">
-            <p className="text-[#000000] mb-8 mt-10 font-bold text-[24px] tracking-[1.71px]">
+            <p className="mb-8 mt-10 font-bold text-[24px] tracking-[1.71px]">
               YX1 EARPHONES
             </p>
             <ButtonBrown

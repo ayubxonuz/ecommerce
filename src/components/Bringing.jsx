@@ -3,11 +3,11 @@ function Bringing() {
     <div className="grid grid-cols-2 items-center mt-[200px] max-[1027px]:grid-cols-1">
       <div className="bg-[url('/personImgBig.png')] rounded-lg bg-cover w-full h-[300px] hidden max-[1027px]:block"></div>
       <div className="px-[58px] pt-[63px] max-[1027px]:px-[0px] max-[820px]:pt-[40px] max-[1027px]:text-center w-[690px] max-w-full mx-auto">
-        <h3 className="font-bold text-[#000000] text-[40px] max-[710px]:text-[28px] tracking-[1.44px] mb-8">
+        <h3 className="font-bold text-[40px] max-[710px]:text-[28px] tracking-[1.44px] mb-8">
           BRINGING YOU THE <span className="text-[#D87D4A]">BEST</span> AUDIO
           GEAR
         </h3>
-        <p className="text-[#000000] text-[15px] opacity-[50%]">
+        <p className="text-[15px] opacity-[50%]">
           Located at the heart of New York City, Audiophile is the premier store
           for high end headphones, earphones, speakers, and audio accessories.
           We have a large showroom and luxury demonstration rooms available for

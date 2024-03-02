@@ -114,7 +114,7 @@ function Navbar() {
           <div>
             <div
               tabIndex={0}
-              className="menu dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-[400px] max-[450px]:w-[300px] h-auto pb-5"
+              className="menu dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-[400px] max-[450px]:w-[300px] pb-5"
             >
               <div className="mx-8 max-[450px]:mx-3">
                 <div className="flex justify-between my-8 items-center">

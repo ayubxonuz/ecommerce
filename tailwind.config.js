@@ -5,6 +5,8 @@ export default {
     fontFamily: {manrope: ["Manrope", "Arial", "sans-serif"]},
     extend: {},
   },
-
+  daisyui: {
+    themes: ["bumblebee"],
+  },
   plugins: [require("daisyui")],
 }

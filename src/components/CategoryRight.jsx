@@ -16,10 +16,10 @@ function CategoryRight({img, title, dscr, slug}) {
         <p className="text-[14px] tracking-[10px] text-[#D87D4A]">
           NEW PRODUCT
         </p>
-        <h2 className="text-[#000000] font-bold text-[44px] tracking-[1.43px] max-[500px]:text-[28px]">
+        <h2 className="font-bold text-[44px] tracking-[1.43px] max-[500px]:text-[28px]">
           {title}
         </h2>
-        <p className="text-[#000000] mt-8 mb-10 text-[15px] opacity-[50%]">
+        <p className="mt-8 mb-10 text-[15px] opacity-[50%]">
           {dscr}
         </p>
         <ButtonBrown slug={slug} textColor={"#FFFFFF"} text={"SEE PRODUCT"} />
