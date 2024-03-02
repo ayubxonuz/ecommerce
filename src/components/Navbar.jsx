@@ -91,6 +91,7 @@ function Navbar() {
             EARPHONES
           </NavLink>
         </nav>
+
         <div className="dropdown z-50 dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -111,90 +112,84 @@ function Navbar() {
               <span className="badge badge-sm indicator-item">{allCount}</span>
             </div>
           </div>
-          <div>
-            <div
-              tabIndex={0}
-              className="menu dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-[400px] max-[450px]:w-[300px] pb-5"
-            >
-              <div className="mx-8 max-[450px]:mx-3">
-                <div className="flex justify-between my-8 items-center">
-                  <p className="text-[#000000] font-bold text-[18px] tracking-[1.29px]">
-                    CART ({allCount})
-                  </p>
-                  <p
-                    onClick={() => dispatch(deleteAll())}
-                    className="text-[#000000] hover:text-[#D87D4A] transition text-[15px] opacity-[50%] cursor-pointer"
-                  >
-                    Remove all
-                  </p>
-                </div>
-                {allSelectData.map((data) => {
-                  return (
-                    <Fragment key={nanoid()}>
-                      <div className="grid w-full grid-cols-2 mb-6 items-center">
-                        <div className="flex items-center">
-                          <div className="max-w-16 w-full h-16 bg-[#F1F1F1] rounded-lg">
-                            <img
-                              className="w-full h-full rounded-lg m-auto"
-                              src={data?.image?.desktop}
-                              alt=""
-                            />
-                          </div>
-                          <div className="ml-4 max-[450px]:ml-2">
-                            <p className="text-[#000000] max-[450px]:text-[12px] line-clamp-1 font-bold text-[15px]">
-                              {data?.name?.slice(0, 7) + "..."}
-                            </p>
-                            <p className="text-[#000000] opacity-[50%] font-bold text-[14px] max-[450px]:text-[11px] ruby">
-                              $ {data?.price.toLocaleString("en-US")}
-                            </p>
-                          </div>
+          <div
+            tabIndex={0}
+            className="menu dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-[400px] max-[450px]:w-[300px] pb-5"
+          >
+            <div className="mx-8 max-[450px]:mx-3">
+              <div className="flex justify-between my-8 items-center">
+                <p className="font-bold text-[18px] tracking-[1.29px]">
+                  CART ({allCount})
+                </p>
+                <p
+                  onClick={() => dispatch(deleteAll())}
+                  className="hover:text-[#D87D4A] transition text-[15px] opacity-[50%] cursor-pointer"
+                >
+                  Remove all
+                </p>
+              </div>
+              {allSelectData.map((data) => {
+                return (
+                  <Fragment key={nanoid()}>
+                    <div className="grid w-full grid-cols-2 mb-6 items-center">
+                      <div className="flex items-center">
+                        <div className="max-w-16 w-full h-16 bg-base-200 rounded-lg">
+                          <img
+                            className="w-full h-full rounded-lg m-auto"
+                            src={data?.image?.desktop}
+                            alt=""
+                          />
                         </div>
-                        <div className="w-[96px] h-[32px] max-[450px]:w-[80px] bg-[#F1F1F1] flex justify-between items-center px-6 max-[450px]:px-4 ml-auto">
-                          <button
-                            onClick={() => dispatch(decrementData(data))}
-                            className="hover:text-[#FBAF85]"
-                          >
-                            -
-                          </button>
-                          <p className="font-bold text-[#000000] text-[13px]">
-                            {data.amount}
+                        <div className="ml-4 max-[450px]:ml-2">
+                          <p className="max-[450px]:text-[12px] line-clamp-1 font-bold text-[15px]">
+                            {data?.name?.slice(0, 7) + "..."}
                           </p>
-                          <button
-                            onClick={() =>
-                              dispatch(addToCard({...data, amount: 1}))
-                            }
-                            className="hover:text-[#FBAF85]"
-                          >
-                            +
-                          </button>
+                          <p className="opacity-[50%] font-bold text-[14px] max-[450px]:text-[11px] ruby">
+                            $ {data?.price.toLocaleString("en-US")}
+                          </p>
                         </div>
                       </div>
-                    </Fragment>
-                  )
-                })}
-                {allSelectData.length == [] && (
-                  <h1>You don't have any products yet</h1>
-                )}
-                {allSelectData <= [] ? (
-                  <></>
-                ) : (
-                  <>
-                    <div className="flex justify-between items-center">
-                      <p className="text-[#000000] opacity-[50%] text-[15px]">
-                        TOTAL
-                      </p>
-                      <p className="text-[#000000] text-[18px] font-bold">
-                        $ {allPrice.toLocaleString("en-US")}
-                      </p>
+                      <div className="w-[96px] h-[32px] max-[450px]:w-[80px] bg-base-200 flex justify-between items-center px-6 max-[450px]:px-4 ml-auto">
+                        <button
+                          onClick={() => dispatch(decrementData(data))}
+                          className="hover:text-[#FBAF85]"
+                        >
+                          -
+                        </button>
+                        <p className="font-bold text-[13px]">{data.amount}</p>
+                        <button
+                          onClick={() =>
+                            dispatch(addToCard({...data, amount: 1}))
+                          }
+                          className="hover:text-[#FBAF85]"
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
-                    <Link to={"/checkout"}>
-                      <button className="text-[#FFFFFF] hover:bg-[#FBAF85] transition font-bold text-[13px] bg-[#D87D4A] max-w-[313px] w-full h-12 mt-6">
-                        CHECKOUT
-                      </button>
-                    </Link>
-                  </>
-                )}
-              </div>
+                  </Fragment>
+                )
+              })}
+              {allSelectData.length == [] && (
+                <h1>You don't have any products yet</h1>
+              )}
+              {allSelectData <= [] ? (
+                <></>
+              ) : (
+                <>
+                  <div className="flex justify-between items-center">
+                    <p className="opacity-[50%] text-[15px]">TOTAL</p>
+                    <p className="text-[18px] font-bold">
+                      $ {allPrice.toLocaleString("en-US")}
+                    </p>
+                  </div>
+                  <Link to={"/checkout"}>
+                    <button className="text-[#FFFFFF] hover:bg-[#FBAF85] transition font-bold text-[13px] bg-[#D87D4A] max-w-[313px] w-full h-12 mt-6">
+                      CHECKOUT
+                    </button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

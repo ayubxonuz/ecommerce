@@ -3,7 +3,7 @@ import React, {useState} from "react"
 function CashCheck({text, checked, onChange}) {
   return (
     <div
-      className={`mb-4 pt-2 pl-[21px] text-[#000000] font-bold text-[14px] w-full h-[56px] border ${
+      className={`mb-4 pt-2 pl-[21px] font-bold text-[14px] w-full h-[56px] border ${
         checked ? "border-[#D87D4A]" : "border-[#CFCFCF]"
       } rounded-lg items-center`}
     >

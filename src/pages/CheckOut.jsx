@@ -7,6 +7,7 @@ import {data} from "autoprefixer"
 import Loader from "../components/Loader"
 import {animateScroll} from "react-scroll"
 import {Link} from "react-router-dom"
+import {nanoid} from "@reduxjs/toolkit"
 
 function CheckOut() {
   const {allData, loading, error, allSelectData, allCount, allPrice} =
@@ -32,14 +33,14 @@ function CheckOut() {
         </div>
       )}
       {allData && (
-        <div className="w-full h-full bg-[#F1F1F1]">
+        <div className="w-full h-full bg-base-200">
           <div className="max-container">
             <Link to={"/"} className="btn mt-[79px] text-[16px] mb-[38px]">
               Go Back
             </Link>
             <div className="flex gap-x-7 max-[930px]:block">
-              <div className="max-w-full max-[930px]:max-w-full max-h-[1476px] h-auto bg-[#FFFFFF] rounded-lg pt-[54px] p-6 max-[530px]:p-[18px]">
-                <h1 className="font-bold max-[530px]:text-[20px] text-[32px] text-[#000000] tracking-[1.14px]">
+              <div className="w-[1129px] max-[930px]:max-w-full max-h-[1476px] h-auto bg-base-100 rounded-lg pt-[54px] p-6 max-[530px]:p-[18px]">
+                <h1 className="font-bold max-[530px]:text-[20px] text-[32px] tracking-[1.14px]">
                   CHECKOUT
                 </h1>
                 <p className="text-[#D87D4A] mt-[41px] font-bold text-[13px]">
@@ -97,7 +98,7 @@ function CheckOut() {
                       PAYMENT DETAILS
                     </p>
                     <div className="grid grid-cols-2 max-[530px]:grid-cols-1">
-                      <p className="font-bold text-[12px] tracking-[-0.21px] text-[#000000] max-[530px]:mb-4">
+                      <p className="font-bold text-[12px] tracking-[-0.21px]  max-[530px]:mb-4">
                         Payment Method
                       </p>
                       <div className="ml-2 max-[530px]:ml-0">
@@ -133,7 +134,7 @@ function CheckOut() {
                     ) : (
                       <div className="flex max-w-[620px] w-full gap-x-8 mb-5 mt-6">
                         <img src="/shape.svg" alt="" />
-                        <p className="text-[#000000] opacity-[50%] text-[15px]">
+                        <p className=" opacity-[50%] text-[15px]">
                           The 'Cash on Delivery' option enables you to pay in
                           cash when our delivery courier arrives at your
                           residence. Just make sure your address is correct so
@@ -144,14 +145,17 @@ function CheckOut() {
                   </div>
                 </form>
               </div>
-              <div className="max-w-full pt-8 px-[33px] max-[530px]:px-[18px] rounded-lg w-full h-min pb-5 bg-[#FFFFFF] max-[930px]:max-w-full max-[930px]:mt-8">
-                <p className="text-[#000000] mb-[31px] font-bold text-[18px] tracking-[1.29px]">
+              <div className="max-w-full pt-8 px-[33px] max-[530px]:px-[18px] rounded-lg w-full h-min pb-5 bg-base-100 max-[930px]:max-w-full max-[930px]:mt-8">
+                <p className=" mb-[31px] font-bold text-[18px] tracking-[1.29px]">
                   SUMMARY
                 </p>
                 {allSelectData &&
                   allSelectData.map((data) => {
                     return (
-                      <div className="grid w-full grid-cols-2 mb-6 items-center">
+                      <div
+                        key={nanoid()}
+                        className="grid w-full grid-cols-2 mb-6 items-center"
+                      >
                         <div className="flex items-center">
                           <div className="max-w-16 ruby w-full h-16 bg-[#F1F1F1]">
                             <img
@@ -161,16 +165,16 @@ function CheckOut() {
                             />
                           </div>
                           <div className="ml-4 max-[530px]:ml-2">
-                            <p className="text-[#000000] ruby w-full max-[530px]:text-[12px] font-bold text-[15px]">
+                            <p className=" ruby w-full max-[530px]:text-[12px] font-bold text-[15px]">
                               {data?.name.slice(0, 9) + "..."}
                             </p>
-                            <p className="text-[#000000] ruby opacity-[50%] font-bold text-[14px]">
+                            <p className=" ruby opacity-[50%] font-bold text-[14px]">
                               $ {data?.price.toLocaleString("en-US")}
                             </p>
                           </div>
                         </div>
                         <div className="flex justify-between items-center ml-auto">
-                          <p className="text-[#000000] opacity-[50%] font-bold text-[14px]">
+                          <p className=" opacity-[50%] font-bold text-[14px]">
                             x{data?.amount}
                           </p>
                         </div>
@@ -178,31 +182,31 @@ function CheckOut() {
                     )
                   })}
                 <div className="flex justify-between">
-                  <p className="text-[#000000] mb-3 opacity-[50%] text-[15px] max-[530px]:text-[13px]">
+                  <p className=" mb-3 opacity-[50%] text-[15px] max-[530px]:text-[13px]">
                     TOTAL
                   </p>
-                  <p className="text-[#000000] font-bold text-[18px] max-[530px]:text-[16px]">
+                  <p className=" font-bold text-[18px] max-[530px]:text-[16px]">
                     $ {allPrice.toLocaleString("en-US")}
                   </p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-[#000000] mb-3 opacity-[50%] text-[15px] max-[530px]:text-[13px]">
+                  <p className=" mb-3 opacity-[50%] text-[15px] max-[530px]:text-[13px]">
                     SHIPPING
                   </p>
-                  <p className="text-[#000000] font-bold text-[18px] max-[530px]:text-[16px]">
+                  <p className=" font-bold text-[18px] max-[530px]:text-[16px]">
                     $ 50
                   </p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-[#000000] opacity-[50%] text-[15px] max-[530px]:text-[13px]">
+                  <p className=" opacity-[50%] text-[15px] max-[530px]:text-[13px]">
                     VAT (INCLUDED)
                   </p>
-                  <p className="text-[#000000] font-bold text-[18px] max-[530px]:text-[16px]">
+                  <p className=" font-bold text-[18px] max-[530px]:text-[16px]">
                     $ 1,079
                   </p>
                 </div>
                 <div className="flex justify-between mt-6">
-                  <p className="text-[#000000] opacity-[50%] text-[15px] max-[530px]:text-[13px]">
+                  <p className=" opacity-[50%] text-[15px] max-[530px]:text-[13px]">
                     GRAND TOTAL
                   </p>
                   <p className="text-[#D87D4A] font-bold text-[18px] max-[530px]:text-[16px]">
@@ -225,16 +229,16 @@ function CheckOut() {
                         src="/modalTrue.png"
                         alt=""
                       />
-                      <div className="text-[#000000] font-bold text-[32px] tracking-[1.14px] max-[530px]:text-[24px]">
+                      <div className=" font-bold text-[32px] tracking-[1.14px] max-[530px]:text-[24px]">
                         <span>THANK YOU</span>
                         <br />
                         <span>FOR YOUR ORDER</span>
                       </div>
-                      <p className="text-[#000000] text-[15px] opacity-[50%] mt-[24px] max-[530px]:mt-[10px]">
+                      <p className=" text-[15px] opacity-[50%] mt-[24px] max-[530px]:mt-[10px]">
                         You will receive an email confirmation shortly.
                       </p>
                       <div className="grid grid-cols-2 max-[530px]:grid-cols-1 w-full mt-[33px] max-[530px]:mt-[20px]">
-                        <div className="w-full bg-[#F1F1F1] p-6">
+                        <div className="w-full bg-base-200 p-6">
                           <div className="flex justify-between items-center max-[530px]:justify-evenly max-[438px]:justify-between">
                             <img
                               width={35}
@@ -243,23 +247,23 @@ function CheckOut() {
                               alt=""
                             />
                             <div className="text-center">
-                              <p className="text-[#000000] font-bold text-[15px]">
+                              <p className=" font-bold text-[15px]">
                                 XX99 MK II
                               </p>
-                              <p className="text-[14px] text-[#000000] font-bold opacity-[50%] mt-1">
+                              <p className="text-[14px]  font-bold opacity-[50%] mt-1">
                                 $ 2,999
                               </p>
                             </div>
-                            <p className="text-[14px] text-[#000000] font-bold opacity-[50%]">
+                            <p className="text-[14px]  font-bold opacity-[50%]">
                               x1
                             </p>
                           </div>
                           <p className="w-full bg-[#000000] h-[1px] opacity-[8%] my-3"></p>
-                          <p className="text-[12px] tracking-[0.21px] font-bold text-[#000000] opacity-[50%] text-center">
+                          <p className="text-[12px] tracking-[0.21px] font-bold  opacity-[50%] text-center">
                             and 2 other item(s)
                           </p>
                         </div>
-                        <div className="w-full bg-[#000000] py-10 pl-8">
+                        <div className="w-full bg-error-content max-[530px]:text-center py-10 pl-8 max-[530px]:pl-0">
                           <p className="text-[#FFFFFF] opacity-[50%] text-[15px]">
                             GRAND TOTAL
                           </p>

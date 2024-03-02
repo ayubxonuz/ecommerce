@@ -3,12 +3,12 @@ import {NavLink} from "react-router-dom"
 function Footer() {
   return (
     <div className="w-full bg-[#101010] h-auto">
-      <footer className="max-container mt-16 mb-7">
+      <footer className="max-container mt-16 max-[650px]:mt-10 mb-7">
         <div className="flex justify-between max-[910px]:block max-[650px]:text-center">
           <NavLink to={"/"}>
             <img className="max-[650px]:mx-auto" src="/logo.svg" alt="" />
           </NavLink>
-          <nav className="flex max-[650px]:grid max-[650px]:mt-12 max-[910px]:gap-y-4 max-[910px]:mt-7 text-[#FFFFFF] gap-x-[34px] font-bold text-[13px] tracking-[2px]">
+          <nav className="flex max-[650px]:grid max-[650px]:w-min max-[650px]:justify-items-center max-[650px]:mx-auto max-[650px]:mt-8 max-[910px]:gap-y-4 max-[910px]:mt-7 text-[#FFFFFF] gap-x-[34px] font-bold text-[13px] tracking-[2px]">
             <NavLink className={"hover:text-[#D87D4A] transition"} to={"/"}>
               HOME
             </NavLink>
