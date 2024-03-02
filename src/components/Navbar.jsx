@@ -114,9 +114,9 @@ function Navbar() {
           <div>
             <div
               tabIndex={0}
-              className="menu dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-[400px] max-[450px]:w-[290px] h-auto pb-5"
+              className="menu dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-[400px] max-[450px]:w-[300px] h-auto pb-5"
             >
-              <div className="mx-8 max-[450px]:mx-2">
+              <div className="mx-8 max-[450px]:mx-3">
                 <div className="flex justify-between my-8 items-center">
                   <p className="text-[#000000] font-bold text-[18px] tracking-[1.29px]">
                     CART ({allCount})
@@ -135,13 +135,13 @@ function Navbar() {
                         <div className="flex items-center">
                           <div className="max-w-16 w-full h-16 bg-[#F1F1F1] rounded-lg">
                             <img
-                              className="w-full h-full  m-auto"
+                              className="w-full h-full rounded-lg m-auto"
                               src={data?.image?.desktop}
                               alt=""
                             />
                           </div>
                           <div className="ml-4 max-[450px]:ml-2">
-                            <p className="text-[#000000] max-[450px]:text-[12px] ruby font-bold text-[15px]">
+                            <p className="text-[#000000] max-[450px]:text-[12px] line-clamp-1 font-bold text-[15px]">
                               {data?.name?.slice(0, 7) + "..."}
                             </p>
                             <p className="text-[#000000] opacity-[50%] font-bold text-[14px] max-[450px]:text-[11px] ruby">
