@@ -10,8 +10,9 @@ import {Link} from "react-router-dom"
 import {nanoid} from "@reduxjs/toolkit"
 
 function CheckOut() {
-  const {allData, loading, error, allSelectData, allCount, allPrice} =
-    useSelector((store) => store.ecommerse)
+  const {allData, loading, allSelectData, allPrice} = useSelector(
+    (store) => store.ecommerse
+  )
   const [selectedOption, setSelectedOption] = useState("e-Money")
 
   const handleOptionChange = (option) => {
@@ -223,56 +224,61 @@ function CheckOut() {
                 </button>
                 <dialog id="my_modal_4" className="modal p-2">
                   <div className="modal-box w-full max-w-[540px] p-12 max-[530px]:p-5">
-                    <div>
-                      <img
-                        className="mb-[33px] max-[530px]:mb-[20px]"
-                        src="/modalTrue.png"
-                        alt=""
-                      />
-                      <div className=" font-bold text-[32px] tracking-[1.14px] max-[530px]:text-[24px]">
-                        <span>THANK YOU</span>
-                        <br />
-                        <span>FOR YOUR ORDER</span>
-                      </div>
-                      <p className=" text-[15px] opacity-[50%] mt-[24px] max-[530px]:mt-[10px]">
-                        You will receive an email confirmation shortly.
-                      </p>
-                      <div className="grid grid-cols-2 max-[530px]:grid-cols-1 w-full mt-[33px] max-[530px]:mt-[20px]">
-                        <div className="w-full bg-base-200 p-6">
-                          <div className="flex justify-between items-center max-[530px]:justify-evenly max-[438px]:justify-between">
-                            <img
-                              width={35}
-                              height={35}
-                              src="/XX99Mark.svg"
-                              alt=""
-                            />
-                            <div className="text-center">
-                              <p className=" font-bold text-[15px]">
-                                XX99 MK II
-                              </p>
-                              <p className="text-[14px]  font-bold opacity-[50%] mt-1">
-                                $ 2,999
+                    {allSelectData.length ? (
+                      <div>
+                        <img
+                          className="mb-[33px] max-[530px]:mb-[20px]"
+                          src="/modalTrue.png"
+                          alt=""
+                        />
+                        <div className=" font-bold text-[32px] tracking-[1.14px] max-[530px]:text-[24px]">
+                          <span>THANK YOU</span>
+                          <br />
+                          <span>FOR YOUR ORDER</span>
+                        </div>
+                        <p className=" text-[15px] opacity-[50%] mt-[24px] max-[530px]:mt-[10px]">
+                          You will receive an email confirmation shortly.
+                        </p>
+                        <div className="grid grid-cols-2 max-[530px]:grid-cols-1 w-full mt-[33px] max-[530px]:mt-[20px]">
+                          <div className="w-full bg-base-200 p-6">
+                            <div className="flex justify-between items-center max-[530px]:justify-evenly max-[438px]:justify-between">
+                              <img
+                                width={35}
+                                height={35}
+                                src="/XX99Mark.svg"
+                                alt=""
+                              />
+                              <div className="text-center">
+                                <p className=" font-bold text-[15px]">
+                                  {allSelectData[0]?.name.slice(0, 9)}
+                                </p>
+                                <p className="text-[14px]  font-bold opacity-[50%] mt-1">
+                                  $ {allSelectData[0]?.price}
+                                </p>
+                              </div>
+                              <p className="text-[14px]  font-bold opacity-[50%]">
+                                x{allSelectData[0]?.amount}
                               </p>
                             </div>
-                            <p className="text-[14px]  font-bold opacity-[50%]">
-                              x1
+                            <p className="w-full bg-[#000000] h-[1px] opacity-[8%] my-3"></p>
+                            <p className="text-[12px] tracking-[0.21px] font-bold  opacity-[50%] text-center">
+                              and {allSelectData?.length - 1} other item(s)
                             </p>
                           </div>
-                          <p className="w-full bg-[#000000] h-[1px] opacity-[8%] my-3"></p>
-                          <p className="text-[12px] tracking-[0.21px] font-bold  opacity-[50%] text-center">
-                            and 2 other item(s)
-                          </p>
-                        </div>
-                        <div className="w-full bg-error-content max-[530px]:text-center py-10 pl-8 max-[530px]:pl-0">
-                          <p className="text-[#FFFFFF] opacity-[50%] text-[15px]">
-                            GRAND TOTAL
-                          </p>
-                          <p className="text-[#FFFFFF] font-bold text-[18px] mt-2">
-                            $ 5,446
-                          </p>
+                          <div className="w-full bg-error-content max-[530px]:text-center py-10 pl-8 max-[530px]:pl-0">
+                            <p className="text-[#FFFFFF] opacity-[50%] text-[15px]">
+                              GRAND TOTAL
+                            </p>
+                            <p className="text-[#FFFFFF] font-bold text-[18px] mt-2">
+                              $ {allPrice}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    ) : (
+                      <h1>You don't have any products yet</h1>
+                    )}
+
                     <form method="dialog">
                       <button className="text-[#FFFFFF] hover:bg-[#FBAF85] transition font-bold text-[13px] bg-[#D87D4A] w-full h-12 mt-[46px]">
                         BACK TO HOME

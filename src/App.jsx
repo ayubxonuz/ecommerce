@@ -10,9 +10,10 @@ import {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {fetchData} from "./redux/features/ecommerseSlice"
 import Signup from "./pages/Signup"
+import Login from "./pages/Login"
 
 function App() {
-  const {userData} = useSelector((state) => state.ecommerse)
+  const {userData, allSelectData} = useSelector((state) => state.ecommerse)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchData())
@@ -50,13 +51,21 @@ function App() {
         {
           path: "/checkout",
           element:
-            userData == null ? <Navigate to={"/signup"} /> : <CheckOut />,
+            userData == null || allSelectData.length == 0 ? (
+              <Navigate to={"/signup"} />
+            ) : (
+              <CheckOut />
+            ),
         },
       ],
     },
     {
       path: "/signup",
       element: userData ? <Navigate to={"/"} /> : <Signup />,
+    },
+    {
+      path: "/login",
+      element: userData ? <Navigate to={"/"} /> : <Login />,
     },
   ])
   return <RouterProvider router={routest} />

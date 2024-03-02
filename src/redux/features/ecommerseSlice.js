@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import {getAuth, signOut} from "firebase/auth"
 import {Navigate} from "react-router-dom"
+import {toast} from "react-toastify"
 export const fetchData = createAsyncThunk(
   "ecommerse/fetchData",
   async (_, thunkAPI) => {
@@ -38,7 +39,13 @@ const ecommerseSlice = createSlice({
       localStorage.setItem("ecommerse", JSON.stringify(state))
     },
     deleteAll: (state, {payload}) => {
+      if (state.allSelectData.length == 0) {
+        toast.error("You have no data yet")
+        return
+      }
       state.allSelectData = []
+      toast.success("You removed all data")
+
       state.allCount = 0
       localStorage.setItem("ecommerse", JSON.stringify(state))
     },
@@ -55,13 +62,22 @@ const ecommerseSlice = createSlice({
     },
     incrementData: (state, {payload}) => {},
     decrementData: (state, {payload}) => {
-      const item = state.allSelectData.find(
+      const itemIndex = state.allSelectData.findIndex(
         (select) => select.id === payload.id
       )
 
-      item && item.amount--
+      if (itemIndex !== -1) {
+        const item = state.allSelectData[itemIndex]
+        if (item.amount > 1) {
+          item.amount--
+          item.length = 0
+        } else {
+          state.allSelectData.splice(itemIndex, 1)
+        }
+      }
       ecommerseSlice.caseReducers.globalCounter(state)
     },
+
     globalCounter: (state) => {
       let price = 0
       let total = 0

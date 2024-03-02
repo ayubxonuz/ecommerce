@@ -7,15 +7,33 @@ import {
   addToCard,
   decrementData,
   deleteAll,
+  setUser,
 } from "../redux/features/ecommerseSlice"
 import {nanoid} from "@reduxjs/toolkit"
+import {signOut} from "firebase/auth"
+import {auth} from "../firebase/configFirebase"
+import {toast} from "react-toastify"
 
 function Navbar() {
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
   const [progress, setProgress] = useState(0)
-  const {allSelectData, allCount, allPrice} = useSelector(
+  const {allSelectData, allCount, allPrice, userData} = useSelector(
     (store) => store.ecommerse
   )
+
+  const handleLogout = async () => {
+    try {
+      setLoading(true)
+      await signOut(auth)
+      dispatch(setUser(null))
+      setLoading(false)
+      toast.success("Successfully logged out")
+    } catch (error) {
+      toast.error("Error logging out:", error.message)
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="bg-[#0E0E0E]">
@@ -117,6 +135,30 @@ function Navbar() {
             className="menu dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-[400px] max-[450px]:w-[300px] pb-5"
           >
             <div className="mx-8 max-[450px]:mx-3">
+              <div className="flex justify-between mt-2 items-center">
+                <p className="font-semibold text-[13px]">Gmail:</p>
+                <div className="flex items-center gap-x-2">
+                  <p className="font-semibold text-[13px]">
+                    {userData?.email.length >= 18
+                      ? userData?.email.slice(0, 15) + "..."
+                      : userData?.email}
+                  </p>
+
+                  {loading ? (
+                    <button className="btn btn-disabled p-2">
+                      <span className="loading loading-spinner"></span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleLogout}
+                      className="btn p-2 tooltip"
+                      data-tip="Log Out"
+                    >
+                      <img width={30} height={30} src="/logout.png" alt="" />
+                    </button>
+                  )}
+                </div>
+              </div>
               <div className="flex justify-between my-8 items-center">
                 <p className="font-bold text-[18px] tracking-[1.29px]">
                   CART ({allCount})

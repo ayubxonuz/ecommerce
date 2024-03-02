@@ -1,63 +1,42 @@
 import React, {useState} from "react"
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth"
+import {signInWithEmailAndPassword} from "firebase/auth"
 import {Link, useNavigate} from "react-router-dom"
 import {auth} from "../firebase/configFirebase"
 import {useDispatch} from "react-redux"
 import {setUser} from "../redux/features/ecommerseSlice"
 import {toast} from "react-toastify"
 
-const GoogleProvider = new GoogleAuthProvider()
-
-function Signup() {
+function Login() {
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
-  const [loadingGoggle, setLoadingGoggle] = useState(false)
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSignup = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
     try {
       setLoading(true)
-      const userCredential = await createUserWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       )
-      setLoading(false)
       dispatch(setUser(userCredential.user))
-      navigate("/")
-      toast.success("Successfully registered")
-    } catch (error) {
       setLoading(false)
-      toast.error(`Error signing up: ${error.message}`)
-    }
-  }
-
-  const handleGoogleSignup = async () => {
-    try {
-      setLoadingGoggle(true)
-      const result = await signInWithPopup(auth, GoogleProvider)
-      dispatch(setUser(result.user))
-      setLoadingGoggle(false)
       navigate("/")
-      toast.success("Successfully registered")
+      toast.success("Logged in successfully")
     } catch (error) {
-      toast.error(`Error signing up with Google: ${error.message}`)
-      setLoadingGoggle(false)
+      toast.error(`Error signing in: ${error.message}`)
+      setLoading(false)
     }
   }
 
   return (
     <div className="relative bg-base-100 flex flex-col justify-center min-h-screen overflow-hidden px-6">
       <div className="bg-base-100 p-6 m-auto rounded-md shadow-md max-w-[600px] w-full">
-        <h1 className="text-center text-3xl font-bold">Sign up</h1>
-        <form className="mt-6" onSubmit={handleSignup}>
+        <h1 className="text-center text-3xl font-bold">Log in</h1>
+        <form className="mt-6" onSubmit={handleLogin}>
           <div className="mb-2">
             <label className="block text-sm font-semibold">Email</label>
             <input
@@ -74,7 +53,7 @@ function Signup() {
             <input
               required
               type="password"
-              placeholder="Email"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="input input-bordered mt-2 input-md w-full max-w-full"
@@ -87,47 +66,26 @@ function Signup() {
                 type="submit"
                 className="w-full btn-disabled btn btn-active btn-neutral"
               >
-                Sign up <span className="loading loading-spinner"></span>
+                Log in <span className="loading loading-spinner"></span>
               </button>
             ) : (
               <button
                 type="submit"
                 className="w-full btn btn-active btn-neutral"
               >
-                Sign up
+                Log in
               </button>
             )}
           </div>
         </form>
 
-        <div className="mt-6">
-          {loadingGoggle ? (
-            <button
-              type="button"
-              onClick={handleGoogleSignup}
-              className="w-full btn btn-active btn-disabled btn-neutral"
-            >
-              Sign up with Google{" "}
-              <span className="loading loading-spinner"></span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={handleGoogleSignup}
-              className="w-full btn btn-active btn-neutral"
-            >
-              Sign up with Google
-            </button>
-          )}
-        </div>
-
         <p className="mt-8 text-xs font-light tracking-[1px] text-center">
-          Already have an account?{" "}
+          Don't have an account?{" "}
           <Link
-            to="/login"
+            to="/signup"
             className="font-medium text-purple-600 hover:underline"
           >
-            Log in
+            Sign up
           </Link>
         </p>
       </div>
@@ -135,4 +93,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default Login
