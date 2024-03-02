@@ -6,6 +6,7 @@ import {useSelector} from "react-redux"
 import {data} from "autoprefixer"
 import Loader from "../components/Loader"
 import {animateScroll} from "react-scroll"
+import {Link} from "react-router-dom"
 
 function CheckOut() {
   const {allData, loading, error, allSelectData, allCount, allPrice} =
@@ -33,9 +34,9 @@ function CheckOut() {
       {allData && (
         <div className="w-full h-full bg-[#F1F1F1]">
           <div className="max-container">
-            <p className="text-[#000000] mt-[79px] text-[16px] mb-[38px]">
+            <Link to={"/"} className="btn mt-[79px] text-[16px] mb-[38px]">
               Go Back
-            </p>
+            </Link>
             <div className="flex gap-x-7 max-[930px]:block">
               <div className="max-w-full max-[930px]:max-w-full max-h-[1476px] h-auto bg-[#FFFFFF] rounded-lg pt-[54px] p-6 max-[530px]:p-[18px]">
                 <h1 className="font-bold max-[530px]:text-[20px] text-[32px] text-[#000000] tracking-[1.14px]">

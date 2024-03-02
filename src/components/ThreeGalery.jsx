@@ -1,6 +1,6 @@
 function ThreeGalery({img1, img2, img3}) {
   return (
-    <div className="flex gap-x-8 my-40 max-[740px]:block">
+    <div className="flex gap-x-8 my-40 max-[500px]:my-[120px] max-[740px]:block">
       <div>
         <div className={`mb-8 max-[740px]:mb-[20px]`}>
           <img

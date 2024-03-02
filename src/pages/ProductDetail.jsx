@@ -42,11 +42,13 @@ function ProductDetail() {
       )}
       {singleData && (
         <div className="max-container">
-          <NavLink to={"/"}>Go Back</NavLink>
-          <div className="grid grid-cols-2 items-center mt-14 mb-[160px] max-[1138px]:grid-cols-1">
-            <div className="max-w-[540px] max-[1138px]:max-w-full bg-[#F1F1F1] w-full flex h-[560px]">
+          <NavLink className={"btn"} to={"/"}>
+            Go Back
+          </NavLink>
+          <div className="grid grid-cols-2 items-center mt-14 mb-[88px] max-[1138px]:grid-cols-1">
+            <div className="max-w-[540px] max-[1138px]:max-w-full bg-[#F1F1F1] w-full flex h-[560px] max-[550px]:max-h-[560px] max-[550px]:h-full">
               <img
-                className="m-auto w-[381px]"
+                className="m-auto w-[381px] max-[500px]:h-[200px] max-[500px]:w-[200px]"
                 src={singleData.categoryImage?.desktop}
                 alt=""
               />
@@ -55,16 +57,16 @@ function ProductDetail() {
               <p className="text-[14px] tracking-[10px] text-[#D87D4A]">
                 NEW PRODUCT
               </p>
-              <h2 className="text-[#000000] font-bold text-[44px] tracking-[1.43px]">
+              <h2 className="text-[#000000] max-[500px]:text-[28px] mt-2 font-bold text-[44px] tracking-[1.43px]">
                 {singleData?.name}
               </h2>
-              <p className="text-[#000000] mt-8 mb-10 text-[15px] opacity-[50%]">
+              <p className="text-[#000000] mt-8 mb-10 max-[500px]:mb-[20px] text-[15px] opacity-[50%]">
                 {singleData?.description}
               </p>
               <h3 className="text-[#000000] font-bold text-[18px] tracking-[1.29px]">
                 $ {singleData?.price}
               </h3>
-              <div className="flex gap-x-4 mt-[47px]">
+              <div className="flex gap-x-4 mt-[47px] max-[500px]:mt-[31px]">
                 <button
                   onClick={() =>
                     dispatch(addToCard({...singleData, amount: 1}))
@@ -78,7 +80,7 @@ function ProductDetail() {
           </div>
           <div className="flex justify-between max-[1138px]:block">
             <div>
-              <h2 className="font-bold text-[32px] mb-8 tracking-[1.14px] text-[#000000]">
+              <h2 className="font-bold text-[32px] mb-[24px] tracking-[1.14px] text-[#000000]">
                 FEATURES
               </h2>
               <p className="text-[15px] max-[1138px]:max-w-full text-[#000000] opacity-[50%] max-w-[635px] w-full">
@@ -89,7 +91,7 @@ function ProductDetail() {
               <h2 className="font-bold mb-8 text-[32px] tracking-[1.14px] text-[#000000]">
                 IN THE BOX
               </h2>
-              <div className="mr-[124px]">
+              <div className="mr-[124px] max-[414px]:mr-0">
                 {singleData.includes?.map((inc) => {
                   return (
                     <p

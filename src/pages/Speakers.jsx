@@ -36,7 +36,7 @@ function Speakers() {
           <div className="bg-[#000000]">
             <div className="max-container">
               <hr className="bg-[#FFFFFF] z-0 relative opacity-[20%] h-[1px]" />
-              <h1 className="font-bold text-center mt-[98px] mb-[97px] text-[#FFFFFF] text-[44px] tracking-[1.43px]">
+              <h1 className="font-bold text-center mt-[98px] mb-[97px] text-[#FFFFFF] text-[44px] tracking-[1.43px] max-[560px]:mt-[32px] max-[560px]:mb-[22px] max-[560px]:text-[28px]">
                 SPEAKERS
               </h1>
             </div>
